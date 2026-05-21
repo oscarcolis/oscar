@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathCourse - La Mejor Educación Desde Tu Casa</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --magenta: #e600ac;
+    --magenta-light: #ff00c8;
+    --dark: #1a1a2e;
+    --dark-nav: #2b2d42;
+    --white: #ffffff;
+    --gray-light: #f5f5f5;
+    --orange: #ff6b35;
+    --text-dark: #2b2d42;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .topbar-brand {
+    font-family: 'Nunito', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--text-dark);
+    flex: 0 0 auto;
+    margin-right: 60px;
+  }
+  .topbar-brand span { color: var(--magenta); }
+
+  .topbar-contacts {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex: 1;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--magenta), var(--magenta-light));
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 18px; height: 18px; fill: #fff; }
+
+  .contact-text strong {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+  .contact-text span {
+    font-size: 12.5px;
+    color: #777;
+    font-weight: 500;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: stretch;
+    padding: 0 40px;
+  }
+
+  .nav-materias {
+    background: #f0e6f6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 24px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-dark);
+    cursor: pointer;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 20px;
+    transition: background 0.2s;
+  }
+  .nav-materias:hover { background: #e8d0f5; }
+  .nav-materias svg { fill: var(--magenta); width: 18px; height: 18px; }
+  .nav-materias .chevron { fill: var(--text-dark); width: 14px; height: 14px; margin-left: 4px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 22px 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--magenta); }
+  .nav-links a.active { color: var(--magenta); font-weight: 600; }
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 16px; right: 16px;
+    height: 3px;
+    background: var(--magenta);
+    border-radius: 2px 2px 0 0;
+  }
+
+  .nav-cta {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+  .btn-register {
+    background: var(--dark-nav);
+    color: #fff;
+    border: none;
+    padding: 13px 26px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn-register:hover { background: var(--magenta); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.25) 100%),
+      url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&q=80') center/cover no-repeat;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 18px;
+  }
+
+  .hero-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 28px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--magenta), var(--magenta-light));
+    color: #fff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(230,0,172,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(230,0,172,0.5); }
+
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.7);
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+  /* Slider dots */
+  .hero-dots {
+    position: absolute;
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 3;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .dot.active { background: var(--orange); transform: scale(1.2); }
+
+  /* ── FEATURES STRIP ── */
+  .features {
+    background: var(--white);
+    padding: 50px 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--magenta), var(--magenta-light));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .feature-icon svg { width: 24px; height: 24px; fill: #fff; }
+  .feature-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .feature-card p { font-size: 13px; color: #777; line-height: 1.5; }
+
+  /* ── COURSES ── */
+  .section {
+    padding: 70px 60px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--text-dark);
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .course-card {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    background: #fff;
+  }
+  .course-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.14); }
+
+  .course-thumb {
+    height: 180px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .course-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+  }
+  .course-thumb span { position: relative; z-index: 1; }
+
+  .course-thumb.c1 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .course-thumb.c2 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .course-thumb.c3 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
+  .course-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--magenta);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .course-body { padding: 20px 22px; }
+  .course-meta { font-size: 12px; color: #aaa; margin-bottom: 8px; font-weight: 500; }
+  .course-name { font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+  .course-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 16px; }
+
+  .course-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .course-price { font-size: 22px; font-weight: 900; color: var(--magenta); }
+  .course-price small { font-size: 12px; font-weight: 500; color: #999; text-decoration: line-through; margin-left: 6px; }
+  .btn-course {
+    background: var(--dark-nav);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-course:hover { background: var(--magenta); }
+
+  /* ── STATS ── */
+  .stats {
+    background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Nunito', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--magenta);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 24px 40px;
+    font-size: 13px;
+  }
+  footer a { color: var(--magenta); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-title   { animation-delay: 0.25s; }
+  .hero-actions { animation-delay: 0.45s; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand"><span>M</span>ATHCOURSE</div>
+  <div class="topbar-contacts">
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      </div>
+      <div class="contact-text">
+        <strong>Nuestra Oficina</strong>
+        <span>UAEM ECATEPEC, MEXICO</span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div class="contact-text">
+        <strong>Nuestro Email</strong>
+        <span>info@example.com</span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      </div>
+      <div class="contact-text">
+        <strong>Contáctanos</strong>
+        <span>+55 36109117</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAVBAR -->
+<nav>
+  <button class="nav-materias">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+    MATERIAS
+    <svg class="chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Inicio</a></li>
+    <li><a href="#">Sobre Nosotros</a></li>
+    <li><a href="#">Cursos</a></li>
+    <li><a href="#">Maestros</a></li>
+    <li><a href="#">
+      Blog
+      <svg style="width:14px;height:14px;fill:currentColor;margin-top:1px" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+    </a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-register">Registrarse ahora</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Los Mejores Cursos en Línea</p>
+    <h1 class="hero-title">La Mejor Educación<br>Desde Tu Casa</h1>
+    <div class="hero-actions">
+      <button class="btn-primary">Explorar Cursos</button>
+      <button class="btn-outline">Saber Más</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature-card">
+    <div class="feature-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+    </div>
+    <div>
+      <h4>Cursos Certificados</h4>
+      <p>Obtén diplomas reconocidos al completar cada módulo.</p>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V8z"/></svg>
+    </div>
+    <div>
+      <h4>Aprende a tu Ritmo</h4>
+      <p>Acceso 24/7 a todo el contenido sin horarios fijos.</p>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+    </div>
+    <div>
+      <h4>Maestros Expertos</h4>
+      <p>Aprende de profesionales con años de experiencia.</p>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">
+      <svg viewBox="0 0 24 24"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+    </div>
+    <div>
+      <h4>Soporte Continuo</h4>
+      <p>Foros, tutorías y atención personalizada siempre.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section class="section" style="background:#f9f9f9">
+  <div class="section-header">
+    <p class="section-tag">Nuestros Cursos</p>
+    <h2 class="section-title">Aprende con los Mejores</h2>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card">
+      <div class="course-thumb c1">
+        <span>➕</span>
+        <span class="course-badge">Popular</span>
+      </div>
+      <div class="course-body">
+        <div class="course-meta">MATEMÁTICAS • 24 clases</div>
+        <div class="course-name">Álgebra desde Cero</div>
+        <div class="course-desc">Domina ecuaciones, funciones y gráficas con ejercicios paso a paso.</div>
+        <div class="course-footer">
+          <div class="course-price">$299 <small>$499</small></div>
+          <button class="btn-course">Inscribirse</button>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb c2">
+        <span>📐</span>
+        <span class="course-badge">Nuevo</span>
+      </div>
+      <div class="course-body">
+        <div class="course-meta">GEOMETRÍA • 18 clases</div>
+        <div class="course-name">Geometría Analítica</div>
+        <div class="course-desc">Cónicas, vectores y transformaciones explicadas de forma visual.</div>
+        <div class="course-footer">
+          <div class="course-price">$249 <small>$399</small></div>
+          <button class="btn-course">Inscribirse</button>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb c3">
+        <span>📊</span>
+      </div>
+      <div class="course-body">
+        <div class="course-meta">ESTADÍSTICA • 20 clases</div>
+        <div class="course-name">Estadística y Probabilidad</div>
+        <div class="course-desc">Análisis de datos, distribuciones y teoremas aplicados a la vida real.</div>
+        <div class="course-footer">
+          <div class="course-price">$279 <small>$450</small></div>
+          <button class="btn-course">Inscribirse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div>
+    <div class="stat-number">5,200+</div>
+    <div class="stat-label">Estudiantes</div>
+  </div>
+  <div>
+    <div class="stat-number">48</div>
+    <div class="stat-label">Cursos</div>
+  </div>
+  <div>
+    <div class="stat-number">32</div>
+    <div class="stat-label">Maestros</div>
+  </div>
+  <div>
+    <div class="stat-number">98%</div>
+    <div class="stat-label">Satisfacción</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <a href="#">MathCourse</a> · UAEM Ecatepec, México · Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // Slider dots interactivity
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((d, i) => {
+    d.addEventListener('click', () => {
+      dots.forEach(x => x.classList.remove('active'));
+      d.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
